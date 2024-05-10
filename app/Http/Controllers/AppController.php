@@ -19,7 +19,7 @@ class AppController extends Controller
      */
     public function create()
     {
-        //
+        return view('pendaftaran.create');
     }
 
     /**

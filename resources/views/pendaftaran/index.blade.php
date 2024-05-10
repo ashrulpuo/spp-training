@@ -6,50 +6,45 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="container-fluid">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-12 text-gray-900">
-
-                    <div class="container">
-                        <div class="row custyle">
-                            <table class="table table-striped custab">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">SENARAI ANGGOTA PERKHIDMATAN PENDIDIKAN</div>
+                        <div class="card-body">
+                            <div class="mb-3 text-right">
+                                <a href="{{ route('anggota-perkhidmatan.create') }}" class="btn btn-primary">Daftar</a>
+                            </div>
+                            <table class="table">
                                 <thead>
-                                    <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new
-                                        categories</a>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Parent ID</th>
-                                        <th class="text-center">Action</th>
+                                        <th>Nama</th>
+                                        <th>Jawatan</th>
+                                        <th>Tindakan</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>1</td>
-                                    <td>News</td>
-                                    <td>News Cate</td>
-                                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                                                class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#"
-                                            class="btn btn-danger btn-xs"><span
-                                                class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Products</td>
-                                    <td>Main Products</td>
-                                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                                                class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#"
-                                            class="btn btn-danger btn-xs"><span
-                                                class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Blogs</td>
-                                    <td>Parent Blogs</td>
-                                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                                                class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#"
-                                            class="btn btn-danger btn-xs"><span
-                                                class="glyphicon glyphicon-remove"></span> Del</a></td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>John Doe</td>
+                                        <td>Teacher</td>
+                                        <td>
+                                            <a class='btn btn-info btn-xs' href="#"><i class="fas fa-edit"></i> Kemaskini</a> 
+                                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jane Smith</td>
+                                        <td>Principal</td>
+                                        <td>
+                                            <a class='btn btn-info btn-xs' href="#"><i class="fas fa-edit"></i> Kemaskini</a> 
+                                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                        </td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -57,5 +52,7 @@
             </div>
         </div>
     </div>
+
+    
 
 </x-app-layout>
