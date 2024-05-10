@@ -17,18 +17,75 @@
 
                             <form>
                                 <div class="form-group row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="Sila isi">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">No Fail</label>
                                     <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        <input type="text" id="new_file_no" name="new_file_no" class="form-control">
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">No Fail Lain</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="other_file_no" name="other_file_no">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group row col-md-6">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">NoKp</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="nokp" name="nokp">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">NoKp Lama</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="old_kp" name="old_kp">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Tarikh Lahir</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <input type="text" class="form-control" id="datepicker" readonly>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Jawatan</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select form-control" aria-label="Default select example" id="position_category_id" name="position_category_id">
+                                            <option selected>Sila pilih</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Tarikh Buka Fail</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="file_date" name="file_date" value="{{ \Carbon\Carbon::now()->format('d/m/Y') }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Lokasi</label>
+                                    <div class="col-sm-10">                                        
+                                        <select class="form-select form-control" aria-label="Default select example" id="location" name="location">
+                                            <option selected>Sila pilih lokasi</option>
+                                            <option value="1">Sabah</option>
+                                        </select>                                  
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 text-right">
                                         <button type="submit" class="btn btn-primary">Hantar</button>
@@ -45,4 +102,13 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            // Initialize datepicker
+            $('#datepicker').datepicker({
+                format: 'dd-mm-yyyy', // Adjust date format as needed
+                autoclose: true
+            });
+        });
+    </script>
 </x-app-layout>
