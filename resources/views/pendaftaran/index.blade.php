@@ -15,7 +15,7 @@
                             <div class="mb-3 text-right">
                                 <a href="{{ route('anggota-perkhidmatan.create') }}" class="btn btn-primary">Daftar</a>
                             </div>
-                            <table class="table">
+                            <table class="table" id="listing-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -56,7 +56,12 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+            // Initialize datepicker
+            $('#listing-table').DataTable();
+        });
+    </script>
     
 
 </x-app-layout>
