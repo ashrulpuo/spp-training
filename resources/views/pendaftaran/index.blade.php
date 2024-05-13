@@ -59,7 +59,13 @@
     <script>
         $(document).ready(function(){
             // Initialize datepicker
-            $('#listing-table').DataTable();
+            $('#listing-table').DataTable(
+                {
+                    "columnDefs": [
+                        { "orderable": false, "targets": [6] }
+                    ]
+                }
+            );
         });
     </script>
     
