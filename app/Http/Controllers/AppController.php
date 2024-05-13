@@ -7,6 +7,7 @@ use App\Models\Lookup;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AppController extends Controller
 {
@@ -35,6 +36,31 @@ class AppController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            "name" => 'required',
+            "new_file_no" => 'required',
+            "other_file_no" => 'required',
+            "nokp" => 'required',
+            "old_kp" => 'required',
+            "dob" => 'required',
+            "position_category_id" => 'required',
+            "file_date" => 'required',
+            "location" => 'required',
+        ],[
+            'name.required' => 'Medan nama diperlukan.',
+            'new_file_no.required' => 'Medan nombor fail baru diperlukan.',
+            'other_file_no.required' => 'Medan nombor fail lain diperlukan.',
+            'nokp.required' => 'Medan NoKp diperlukan.',
+            'old_kp.required' => 'Medan NoKp lama diperlukan.',
+            'dob.required' => 'Medan tarikh lahir diperlukan.',
+            'position_category_id.required' => 'Medan kategori jawatan diperlukan.',
+            'file_date.required' => 'Medan tarikh fail diperlukan.',
+            'location.required' => 'Medan lokasi diperlukan.',
+        ]);
+
+
         $model = new App();
         
         $file_date =  Carbon::createFromFormat('d/m/Y H:i:s',  $request->input('file_date') . ' 00:00:00');

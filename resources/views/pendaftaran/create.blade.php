@@ -22,18 +22,21 @@
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="name" name="name" value="" placeholder="Sila isi">
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">No Fail</label>
                                     <div class="col-sm-10">
                                         <input type="text" id="new_file_no" name="new_file_no" class="form-control">
+                                        <x-input-error :messages="$errors->get('new_file_no')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">No Fail Lain</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="other_file_no" name="other_file_no">
+                                        <x-input-error :messages="$errors->get('other_file_no')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -41,12 +44,14 @@
                                         <label for="inputPassword" class="col-sm-4 col-form-label">NoKp</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="nokp" name="nokp">
+                                            <x-input-error :messages="$errors->get('nokp')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="form-group row col-md-6">
                                         <label for="inputPassword" class="col-sm-4 col-form-label">NoKp Lama</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="old_kp" name="old_kp">
+                                            <x-input-error :messages="$errors->get('old_kp')" class="mt-2" />
                                         </div>
                                     </div>
                                 </div>
@@ -60,33 +65,37 @@
                                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                             </div>
                                         </div>
+                                        <x-input-error :messages="$errors->get('dob')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Jawatan</label>
                                     <div class="col-sm-10">
                                         <select class="form-select form-control" aria-label="Default select example" id="position_category_id" name="position_category_id">
-                                            <option selected>Sila pilih</option>
+                                            <option value='' selected>Sila pilih</option>
 
                                             @foreach($lookup as $key => $value)
                                                 <option value="{{ $value->id }}">{{ $value->value }}</option>
                                             @endforeach
                                         </select>
+                                        <x-input-error :messages="$errors->get('position_category_id')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Tarikh Buka Fail</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="file_date" name="file_date" value="{{ \Carbon\Carbon::now()->format('d/m/Y') }}" readonly>
+                                        <x-input-error :messages="$errors->get('file_date')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Lokasi</label>
                                     <div class="col-sm-10">                                        
                                         <select class="form-select form-control" aria-label="Default select example" id="location" name="location">
-                                            <option selected>Sila pilih lokasi</option>
+                                            <option value='' selected>Sila pilih lokasi</option>
                                             <option value="1">Sabah</option>
-                                        </select>                                  
+                                        </select>  
+                                        <x-input-error :messages="$errors->get('location')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
