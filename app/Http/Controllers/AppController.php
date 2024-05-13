@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\App;
+use App\Models\Lookup;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -19,7 +23,8 @@ class AppController extends Controller
      */
     public function create()
     {
-        return view('pendaftaran.create');
+        $lookup = Lookup::all(); // select * from tbl_lookup
+        return view('pendaftaran.create', ['lookup' => $lookup]);
     }
 
     /**
@@ -27,7 +32,28 @@ class AppController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $model = new App();
+        
+        $file_date =  Carbon::createFromFormat('d/m/Y H:i:s',  $request->input('file_date') . ' 00:00:00');
+        $dob =  Carbon::createFromFormat('d/m/Y H:i:s',  $request->input('file_date') . ' 00:00:00');
+        
+        $model->name = $request->input('name'); 
+        $model->new_file_no = $request->input('new_file_no'); 
+        $model->other_file_no = $request->input('other_file_no'); 
+        $model->nokp = $request->input('nokp'); 
+        $model->old_kp = $request->input('old_kp');
+        $model->position_category_id = $request->input('position_category_id'); 
+        $model->file_date = $file_date;
+        $model->location = $request->input('location');
+        $model->dob = $dob;
+        $model->status = 1; //'I'
+        $model->reg_status = 1; //'M'
+        $model->active = 1; // 'Aftif'
+        
+        $model->save();
+
+        return redirect()->route('anggota-perkhidmatan.index');
     }
 
     /**

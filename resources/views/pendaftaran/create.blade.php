@@ -15,7 +15,9 @@
                         <div class="card-body">
                             <h4 class="mb-4"><u>Sila isi semua maklumat dibawah</u></h4>
 
-                            <form>
+                            <form action="{{ route('anggota-perkhidmatan.store') }}" method="POST">
+                                @csrf
+
                                 <div class="form-group row">
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
@@ -53,7 +55,7 @@
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Tarikh Lahir</label>
                                     <div class="col-sm-10">
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" id="datepicker" readonly>
+                                            <input type="text" class="form-control" name="dob" id="datepicker" readonly>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                             </div>
@@ -65,9 +67,10 @@
                                     <div class="col-sm-10">
                                         <select class="form-select form-control" aria-label="Default select example" id="position_category_id" name="position_category_id">
                                             <option selected>Sila pilih</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+
+                                            @foreach($lookup as $key => $value)
+                                                <option value="{{ $value->id }}">{{ $value->value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
