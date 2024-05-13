@@ -97,7 +97,10 @@ class AppController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = App::where('id', $id)->first();
+        $lookup = Lookup::all(); // select * from tbl_lookup
+
+        return view('pendaftaran.edit', ['lookup' => $lookup, 'record' => $data]);
     }
 
     /**
