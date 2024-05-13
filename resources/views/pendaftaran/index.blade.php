@@ -38,7 +38,13 @@
                                             <td>{{ $value->file_date }}</td>
                                             <td>
                                                 <a class='btn btn-info btn-xs' href="{{ route('anggota-perkhidmatan.edit', $value->id) }}"><i class="fas fa-edit"></i> Kemaskini</a> 
-                                                <a href="{{ route('anggota-perkhidmatan.destroy', $value->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                                <form action="{{ route('anggota-perkhidmatan.destroy', $value->id) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?')">
+                                                        <i class="fas fa-trash-alt"></i> Hapus
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

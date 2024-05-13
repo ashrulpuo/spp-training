@@ -133,7 +133,7 @@ class AppController extends Controller
 
 
         $model = App::find($id);
-        
+
         $dob = Carbon::createFromFormat('Y-m-d H:i:s', $request->input('dob') . ' 00:00:00');
         
         $model->name = $request->input('name'); 
@@ -158,6 +158,9 @@ class AppController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $model = App::find($id);
+        $model->delete();
+
+        return redirect()->route('anggota-perkhidmatan.index');
     }
 }

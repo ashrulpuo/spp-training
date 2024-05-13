@@ -119,7 +119,7 @@
         $(document).ready(function(){
             // Initialize datepicker
             $('#datepicker').datepicker({
-                format: 'dd-mm-yyyy', // Adjust date format as needed
+                format: 'yyyy-m-d', // Adjust date format as needed
                 autoclose: true
             });
         });
