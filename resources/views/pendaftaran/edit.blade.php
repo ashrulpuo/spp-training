@@ -15,8 +15,9 @@
                         <div class="card-body">
                             <h4 class="mb-4"><u>Sila isi semua maklumat dibawah</u></h4>
 
-                            <form action="{{ route('anggota-perkhidmatan.store') }}" method="POST">
+                            <form action="{{ route('anggota-perkhidmatan.update', $record->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
 
                                 <div class="form-group row">
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>

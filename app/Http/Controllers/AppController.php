@@ -108,7 +108,49 @@ class AppController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            "name" => 'required',
+            "new_file_no" => 'required',
+            "other_file_no" => 'required',
+            "nokp" => 'required',
+            "old_kp" => 'required',
+            "dob" => 'required',
+            "position_category_id" => 'required',
+            "file_date" => 'required',
+            "location" => 'required',
+        ],[
+            'name.required' => 'Medan nama diperlukan.',
+            'new_file_no.required' => 'Medan nombor fail baru diperlukan.',
+            'other_file_no.required' => 'Medan nombor fail lain diperlukan.',
+            'nokp.required' => 'Medan NoKp diperlukan.',
+            'old_kp.required' => 'Medan NoKp lama diperlukan.',
+            'dob.required' => 'Medan tarikh lahir diperlukan.',
+            'position_category_id.required' => 'Medan kategori jawatan diperlukan.',
+            'file_date.required' => 'Medan tarikh fail diperlukan.',
+            'location.required' => 'Medan lokasi diperlukan.',
+        ]);
+
+
+        $model = App::find($id);
+        
+        $dob = Carbon::createFromFormat('Y-m-d H:i:s', $request->input('dob') . ' 00:00:00');
+        
+        $model->name = $request->input('name'); 
+        $model->new_file_no = $request->input('new_file_no'); 
+        $model->other_file_no = $request->input('other_file_no'); 
+        $model->nokp = $request->input('nokp'); 
+        $model->old_kp = $request->input('old_kp');
+        $model->position_category_id = $request->input('position_category_id'); 
+        $model->location = $request->input('location');
+        $model->dob = $dob;
+        $model->status = 1; //'I'
+        $model->reg_status = 1; //'M'
+        $model->active = 1; // 'Aftif'
+        
+        $model->update();
+
+        return redirect()->route('anggota-perkhidmatan.index');
     }
 
     /**
