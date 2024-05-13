@@ -13,6 +13,7 @@
                         <div class="card-header bg-primary text-white">SENARAI ANGGOTA PERKHIDMATAN PENDIDIKAN</div>
                         <div class="card-body">
                             <div class="mb-3 text-right">
+                                <a href="{{ route('anggota-perkhidmatan.eskport') }}" class="btn btn-warning">Eksport</a>
                                 <a href="{{ route('anggota-perkhidmatan.create') }}" class="btn btn-primary">Daftar</a>
                             </div>
                             <table class="table" id="listing-table">
@@ -37,12 +38,12 @@
                                             <td>{{ strtoupper($value->other_file_no) }}</td>
                                             <td>{{ $value->file_date }}</td>
                                             <td>
-                                                <a class='btn btn-info btn-xs' href="{{ route('anggota-perkhidmatan.edit', $value->id) }}"><i class="fas fa-edit"></i> Kemaskini</a> 
+                                                <a class='btn btn-info btn-xs' href="{{ route('anggota-perkhidmatan.edit', $value->id) }}"><i class="fas fa-edit"></i></a> 
                                                 <form action="{{ route('anggota-perkhidmatan.destroy', $value->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete this item?')">
-                                                        <i class="fas fa-trash-alt"></i> Hapus
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>

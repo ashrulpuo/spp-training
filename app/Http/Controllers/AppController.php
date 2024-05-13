@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class AppController extends Controller
 {
@@ -162,5 +163,43 @@ class AppController extends Controller
         $model->delete();
 
         return redirect()->route('anggota-perkhidmatan.index');
+    }
+
+    public function eksport()
+    {
+        $products = App::with(['getPosition'])->get();
+        $csvFileName = 'app.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
+        ];
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, [
+            'Nama', 
+            'No Fail', 
+            'No Fail Lain',
+            'NoKp',
+            'NoKp Lama',
+            'Jawatan',
+            'Tarikh Lahir'
+        ]); // Add more headers as needed
+
+        foreach ($products as $app) {
+            
+            fputcsv($handle, [
+                $app->name, 
+                $app->new_file_no,
+                $app->other_file_no,
+                $app->nokp,
+                $app->old_kp,
+                $app->getPosition->value,
+                $app->dob,
+            ]); // Add more fields as needed
+        }
+
+        fclose($handle);
+
+        return Response::make('', 200, $headers);
     }
 }

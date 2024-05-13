@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
  * new route
  */
 Route::resource('anggota-perkhidmatan', AppController::class);
+Route::get('app/eksport', [AppController::class, 'eksport'])->name('anggota-perkhidmatan.eskport');
+
 
 
 require __DIR__.'/auth.php';
