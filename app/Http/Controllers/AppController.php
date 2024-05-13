@@ -15,7 +15,9 @@ class AppController extends Controller
      */
     public function index()
     {
-        return view('pendaftaran.index');
+        $app = App::with(['getPosition'])->latest()->get();
+        
+        return view('pendaftaran.index', ['app' => $app]);
     }
 
     /**

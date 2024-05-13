@@ -11,4 +11,8 @@ class App extends Model
 
     protected $table = 'tbl_app';
     
+    public function getPosition()
+    {
+        return $this->hasOne(Lookup::class, 'id', 'position_category_id');
+    }
 }

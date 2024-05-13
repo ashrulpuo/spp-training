@@ -18,32 +18,30 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No</th>
                                         <th>Nama</th>
-                                        <th>Jawatan</th>
+                                        <th>NoKp</th>
+                                        <th>No Fail</th>
+                                        <th>No Fail Lain</th>
+                                        <th>Tarikh Buka</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John Doe</td>
-                                        <td>Teacher</td>
-                                        <td>
-                                            <a class='btn btn-info btn-xs' href="#"><i class="fas fa-edit"></i> Kemaskini</a> 
-                                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane Smith</td>
-                                        <td>Principal</td>
-                                        <td>
-                                            <a class='btn btn-info btn-xs' href="#"><i class="fas fa-edit"></i> Kemaskini</a> 
-                                            <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more rows as needed -->
+                                    @foreach($app as $key => $value)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ strtoupper($value->name) }}</td>
+                                            <td>{{ $value->nokp }}</td>
+                                            <td>{{ strtoupper($value->new_file_no) }}</td>
+                                            <td>{{ strtoupper($value->other_file_no) }}</td>
+                                            <td>{{ $value->file_date }}</td>
+                                            <td>
+                                                <a class='btn btn-info btn-xs' href="{{ route('anggota-perkhidmatan.edit', $value->id) }}"><i class="fas fa-edit"></i> Kemaskini</a> 
+                                                <a href="{{ route('anggota-perkhidmatan.destroy', $value->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
