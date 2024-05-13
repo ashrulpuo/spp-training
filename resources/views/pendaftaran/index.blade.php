@@ -36,7 +36,7 @@
                                             <td>{{ $value->nokp }}</td>
                                             <td>{{ strtoupper($value->new_file_no) }}</td>
                                             <td>{{ strtoupper($value->other_file_no) }}</td>
-                                            <td>{{ $value->file_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($value->file_date)->format('d/m/Y') }}</td>
                                             <td>
                                                 <a class='btn btn-info btn-xs' href="{{ route('anggota-perkhidmatan.edit', $value->id) }}"><i class="fas fa-edit"></i></a> 
                                                 <form action="{{ route('anggota-perkhidmatan.destroy', $value->id) }}" method="POST" style="display: inline;">
