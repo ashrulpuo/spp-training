@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function graph()
+    public function graph(Request $request)
     {
         $positions = Lookup::all();
         $colors = [
@@ -25,8 +25,31 @@ class DashboardController extends Controller
         $label = [];
 
         foreach ($positions as $key => $position) {
+            $total = App::where('position_category_id', $position->id);
+
+            if($request->all()) {
+
+                /**
+                 * filter for gender
+                 */
+                if($request->input('gender')) {
+                    if($request->input('gender') == 'L') {
+                        $total = $total->whereRaw("SUBSTRING(nokp, -1) % 2 != 0");
+                    } else {
+                        $total = $total->whereRaw("SUBSTRING(nokp, -1) % 2 = 0");
+                    }
+                }
+
+                /**
+                 * filter for date
+                 */
+                if($request->input('date')) {
+                    $total = $total->whereDate('file_date', $request->input('date'));
+                }
+            }
+
             $label[] = substr($position->value, -4);
-            $data[] = App::where('position_category_id', $position->id)->count();
+            $data[] = $total->count();
         }
 
         return view('dashboard', [

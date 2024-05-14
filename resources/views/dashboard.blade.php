@@ -18,19 +18,20 @@
                                     <div class="col-sm-10">
                                         <select class="form-control" id="gender" name="gender">
                                             <option value="">Sila Pilih Jantina</option>
-                                            <option value="L">Lelaki</option>
-                                            <option value="P">Perempuan</option>
+                                            <option value="L" {{ request()->query('gender') == 'L' ? 'selected' : '' }}>Lelaki</option>
+                                            <option value="P" {{ request()->query('gender') == 'P' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="gender" class="col-sm-2 col-form-label">Tarikh:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="date" name="date" placeholder="Sila Pilih Tarikh">
+                                        <input type="text" class="form-control" id="date" name="date" value="{{ request()->query('date') }}" placeholder="Sila Pilih Tarikh">
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted">
                                     <div class="form-group text-center">
+                                        <a href="{{ route('dashboard') }}" type="button" class="btn btn-warning">Reset</a>
                                         <button type="submit" class="btn btn-secondary">Hantar</button>
                                     </div>
                                 </div>
