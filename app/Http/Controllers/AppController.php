@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Response;
 class AppController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * this is index method.
      */
     public function index()
     {
