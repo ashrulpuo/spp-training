@@ -6,10 +6,51 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <canvas id="mybarChart"></canvas>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">CARIAN</div>
+                        <div class="card-body">
+                            <form action="{{ route('dashboard') }}" method="GET">
+                                <div class="form-group row">
+                                    <label for="gender" class="col-sm-2 col-form-label">Jantina:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="gender" name="gender">
+                                            <option value="">Sila Pilih Jantina</option>
+                                            <option value="L">Lelaki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="gender" class="col-sm-2 col-form-label">Tarikh:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="date" name="date" placeholder="Sila Pilih Tarikh">
+                                    </div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-secondary">Hantar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="mybarChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -17,43 +58,36 @@
 
     <script>
         $(document).ready(function(){
+
+            var data = {!! json_encode($data) !!};
+            var label = {!! json_encode($label) !!};
+
             var ctx = document.getElementById("mybarChart").getContext("2d");
 
             var mybarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['1', '2', '3'],
-                datasets: [{
-                label: 'Candidate A Votes',
-                backgroundColor: "#000080",
-                data: [90,0,0]
-                }, {
-                label: 'Candidate B Votes2',
-                backgroundColor: "#d3d3d3",
-                data: [0,70,0]
-                }, {
-                label: 'Candidate C  Votes3',
-                backgroundColor: "#add8e6",
-                data: [0,0,45]
-                }]
-            },
-
-            options: {
-                legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    fontColor: "#000080",
-                }
+                type: 'bar',
+                data: {
+                    labels: label,
+                    datasets: [{
+                        label: 'Jumlah',
+                        backgroundColor: "#000080",
+                        data: data
+                    }]
                 },
-                scales: {
-                yAxes: [{
-                    ticks: {
-                    beginAtZero: true
-                    }
-                }]
+                options: {
+                    legend: {
+                        display: false, // Hide the legend
+                    },
+                    title: {
+                        display: true,
+                        text: "Graf mengikut jawatan"
+                    },
                 }
-            }
+            });
+
+            $('#date').datepicker({
+                format: 'yyyy-mm-dd', // Adjust the date format as needed
+                autoclose: true
             });     
         });
     </script>

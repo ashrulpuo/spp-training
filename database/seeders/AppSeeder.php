@@ -13,7 +13,7 @@ class AppSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = App::factory()->count(10)->create();
+        $data = App::factory()->count(100)->create();
         dd('success');
     }
 }
