@@ -25,8 +25,7 @@ Route::middleware('auth')->group(function () {
  */
 Route::get('dashboard', [DashboardController::class, 'graph'])
     ->middleware(['auth', 'verified'])->name('dashboard');
-
-    Route::resource('anggota-perkhidmatan', AppController::class);
+Route::resource('anggota-perkhidmatan', AppController::class);
 Route::get('app/eksport', [AppController::class, 'eksport'])->name('anggota-perkhidmatan.eskport');
 
 require __DIR__.'/auth.php';

@@ -51,7 +51,7 @@ class DashboardController extends Controller
             $label[] = substr($position->value, -4);
             $data[] = $total->count();
         }
-
+        
         return view('dashboard', [
             'data' => $data,
             'label' => $label,
